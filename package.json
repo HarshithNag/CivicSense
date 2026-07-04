@@ -1,0 +1,21 @@
+{
+  "name": "civic-sense-app",
+  "version": "1.0.0",
+  "description": "Civic Sense — Capacitor Android wrapper for the Civic Sense product-vision prototype",
+  "main": "index.js",
+  "scripts": {
+    "sync": "npx cap sync android",
+    "open:android": "npx cap open android"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@capacitor/android": "^8.4.1",
+    "@capacitor/cli": "^8.4.1",
+    "@capacitor/core": "^8.4.1"
+  },
+  "devDependencies": {
+    "typescript": "^6.0.3"
+  }
+}

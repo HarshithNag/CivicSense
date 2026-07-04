@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Civic Sense — Bringing Governance Closer to Every Citizen</title>
+<meta name="description" content="Civic Sense — a product vision prototype for the future of digital governance." />
+
+<!-- PWA / installable-app configuration -->
+<link rel="manifest" href="manifest.json" />
+<meta name="theme-color" content="#0b1f3a" />
+<link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png" />
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Civic Sense" />
+<meta name="mobile-web-app-capable" content="yes" />
+
+
+<!-- Fonts: Fraunces (display), Inter (body), IBM Plex Mono (data/utility) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!-- ============================== HEADER ============================== -->
+<header class="app-header">
+  <div class="wrap">
+    <a href="#/home" class="brand">
+      <span class="seal-slot" style="width:30px;height:30px;display:block"></span>
+      <span class="brand-text">
+        <span class="name">Civic Sense</span>
+        <span class="tagline">Bringing Governance Closer to Every Citizen</span>
+      </span>
+    </a>
+
+    <nav class="main-nav">
+      <a href="#/help" data-route="help">Help</a>
+      <a href="#/dev-bills" data-route="dev-bills">Development &amp; Bills</a>
+      <a href="#/laws" data-route="laws">Laws</a>
+    </nav>
+
+    <div class="header-right">
+      <div class="nav-loc-wrap">
+        <button class="nav-loc-btn" id="locBtn" type="button" aria-haspopup="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12Z"/><circle cx="12" cy="9" r="2.4"/></svg>
+          <span>Location</span>
+          <span class="loc-scope" id="locScopeLabel">20 km</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="loc-dropdown" id="locDropdown" style="display:none">
+          <div class="loc-title">Set your location scope</div>
+          <button class="loc-option" data-scope="1 km">1 km</button>
+          <button class="loc-option" data-scope="5 km">5 km</button>
+          <button class="loc-option selected" data-scope="20 km">20 km</button>
+          <button class="loc-option" id="customToggle" data-scope="__custom">Custom
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="loc-sub" id="customSub">
+            <button class="loc-option" data-scope="District">District</button>
+            <button class="loc-option" data-scope="City">City</button>
+            <button class="loc-option" data-scope="State">State</button>
+            <button class="loc-option" data-scope="Entire India">Entire India</button>
+          </div>
+        </div>
+      </div>
+
+      <button class="cs-btn" id="csBtn" type="button" aria-label="Open Civic Sense AI Assistant"></button>
+
+      <button class="mobile-nav-toggle" id="mobileNavToggle" type="button" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-nav-panel" id="mobileNavPanel">
+    <a href="#/help" data-route="help">Help</a>
+    <a href="#/dev-bills" data-route="dev-bills">Development &amp; Bills</a>
+    <a href="#/laws" data-route="laws">Laws</a>
+  </div>
+</header>
+
+<!-- ============================== MAIN ============================== -->
+<main id="main" class="page"></main>
+
+<!-- ============================== FOOTER ============================== -->
+<footer class="app-footer">
+  <div class="wrap">
+    <div class="fbrand"><span class="seal-slot" style="width:20px;height:20px;display:block"></span> Civic Sense</div>
+    <p class="fnote">This is a non-official product vision prototype built to demonstrate UX, product and AI-first thinking in digital governance. It is not affiliated with, and does not represent, the Government of India or any state government. All names, figures, departments, contractors and legal content shown are fictional.</p>
+  </div>
+</footer>
+
+<!-- ============================== AI ASSISTANT PANEL ============================== -->
+<div class="ai-panel-overlay" id="aiPanelOverlay"></div>
+<aside class="ai-panel" id="aiPanel" aria-label="Civic Sense AI Assistant">
+  <div class="ai-panel-head">
+    <div class="apt">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.8 2.8M15.2 15.2 18 18M18 6l-2.8 2.8M8.8 15.2 6 18"/></svg>
+      <div>
+        <h3>Civic Sense AI</h3>
+        <p>Government Operating Assistant · Demo</p>
+      </div>
+    </div>
+    <button class="modal-close" id="aiCloseBtn" aria-label="Close" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <div class="ai-prompts" id="aiPrompts"></div>
+  <div class="ai-panel-body" id="aiPanelBody"></div>
+  <div class="ai-panel-input">
+    <input class="input" id="aiInputField" placeholder="Ask Civic Sense AI..." />
+    <button id="aiSendBtn" type="button" aria-label="Send">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 16-8-6 16-2.5-7L4 12Z"/></svg>
+    </button>
+  </div>
+</aside>
+
+<!-- ============================== MODAL ============================== -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box" id="modalBox"></div>
+</div>
+
+<!-- ============================== TOAST ============================== -->
+<div class="toast" id="toast"></div>
+
+<!-- Scripts load in order: icons -> data -> illustrations -> app (plain
+     scripts, no modules, so this file also works opened directly via
+     file:// with no build step or local server required). -->
+<script src="js/icons.js"></script>
+<script src="js/data.js"></script>
+<script src="js/illustrations.js"></script>
+<script src="js/app.js"></script>
+<script>
+  // Registers the service worker for offline support + installability.
+  // Silently no-ops on file:// or unsupported browsers — the app still
+  // works fine without it, this just adds the "installable app" layer.
+  if ("serviceWorker" in navigator && location.protocol !== "file:") {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("service-worker.js").catch(() => {});
+    });
+  }
+</script>
+</body>
+</html>
